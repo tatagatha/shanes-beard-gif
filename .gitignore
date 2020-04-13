@@ -1,3 +1,9 @@
+# Custom
+input_full
+output
+haarcascade_eye.xml
+haarcascade_frontalface_default.xml
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
