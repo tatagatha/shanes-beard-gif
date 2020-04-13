@@ -24,13 +24,29 @@ This is my first project with Open CV and python really. I don't know how to hel
     ```
     python3 sbg.py
     ```  
- 1. [Build the gif][2]. You can play with the framerate to your liking.  There lots of other things you can do here if you want to get fancy with ffmpeg.
+ 1. [Build the gif][2]. Then [Make a better gif][bettergif].  You can play with the framerate to your liking.  There lots of other things you can do here if you want to get fancy with ffmpeg.
     ```
     ffmpeg -f image2 -framerate 7 -i ./output/%d.jpg shane.gif
+
+    # looks fine but after posting it I was ashamed of all the extensive dithering.
+    # Let's do better.
+
+    # make a video first
+    ffmpeg -framerate 7 -i ./output/%d.jpg shane.avi
+
+    # make a palette. Its unclear what those scale and fps do when making a pallete.
+    ffmpeg -i shane.avi -vf fps=7,scale=300:-1:flags=lanczos,palettegen palette.png
+
+    # Then use that palette as an input. I do know that the scale is the output width of the gif. The rest is unclear.
+    ffmpeg -i shane.avi -i palette.png  -filter_complex "fps=6,scale=300:-1:flags=lanczos[x];[x][1:v]paletteuse" better_shane.gif
     ```
 1. __Behold__  
 ![The Start][beard_gif]
+![The Finish][better_beard_gif]
+
 
 [1]:https://medium.com/@stepanfilonov/tracking-your-eyes-with-python-3952e66194a6
 [2]:https://stackoverflow.com/questions/3688870/create-animated-gif-from-a-set-of-jpeg-images
 [beard_gif]:./shane.gif
+[better_beard_gif]:better_shane.gif
+[bettergif]:https://medium.com/@colten_jackson/doing-the-gif-thing-on-debian-82b9760a8483
