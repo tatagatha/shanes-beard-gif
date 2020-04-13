@@ -212,8 +212,8 @@ def getInputFiles(inputPath):
 parser = argparse.ArgumentParser(description='Process Shane Beard Files')
 parser.add_argument('-i','--input-path', default="./input", help="Input Directory")
 parser.add_argument('-o','--output-path', default="./output", help="Output destination")
-parser.add_argument('--output-height', type=int, default=800, help="Final height of files")
-parser.add_argument('--output-width', type=int, default=600, help="Final width of files")
+parser.add_argument('--output-height', type=int, default=400, help="Final height of files")
+parser.add_argument('--output-width', type=int, default=300, help="Final width of files")
 parser.add_argument("--draw-debug-lines", action='store_true', help="Draw debug lines.")
 
 # Configurations
